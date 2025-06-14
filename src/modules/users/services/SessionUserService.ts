@@ -1,0 +1,41 @@
+import { usersRepository } from "../database/repositories/UsersRepositories";
+import { User } from "../database/entities/User";
+import AppError from "../../../shared/errors/AppError";
+import { compare } from "bcrypt";
+import { sign } from "jsonwebtoken";
+
+interface ISessionUser {
+  email: string;
+  password: string;
+}
+
+interface ISessionResponse {
+  user: User;
+  token: string;
+}
+
+export default class SessionUserService {
+  public async execute({
+    email,
+    password,
+  }: ISessionUser): Promise<ISessionResponse> {
+    const user = await usersRepository.findByEmail(email);
+
+    if (!user) {
+      throw new AppError("Email ou senha incorretos", 401);
+    }
+
+    const passwordMatch = await compare(password, user.password);
+
+    if (!passwordMatch) {
+      throw new AppError("Email ou senha incorretos", 401);
+    }
+
+    const token = sign({}, process.env.JWT_SECRET as string, {
+      subject: user.id.toString(),
+      expiresIn: "1d",
+    });
+
+    return { user, token };
+  }
+}
