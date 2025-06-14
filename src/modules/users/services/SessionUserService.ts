@@ -2,7 +2,7 @@ import { usersRepository } from "../database/repositories/UsersRepositories";
 import { User } from "../database/entities/User";
 import AppError from "../../../shared/errors/AppError";
 import { compare } from "bcrypt";
-import { sign } from "jsonwebtoken";
+import { Secret, sign } from "jsonwebtoken";
 
 interface ISessionUser {
   email: string;
@@ -31,10 +31,14 @@ export default class SessionUserService {
       throw new AppError("Email ou senha incorretos", 401);
     }
 
-    const token = sign({}, process.env.JWT_SECRET as string, {
-      subject: user.id.toString(),
-      expiresIn: "1d",
-    });
+    const token = sign(
+      { email: user.email },
+      process.env.JWT_SECRET as Secret,
+      {
+        subject: user.id.toString(),
+        expiresIn: "1d",
+      }
+    );
 
     return { user, token };
   }
