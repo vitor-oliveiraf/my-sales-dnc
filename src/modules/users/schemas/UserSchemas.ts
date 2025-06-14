@@ -2,9 +2,8 @@ import { celebrate, Joi, Segments } from "celebrate";
 
 export const createUserSchema = celebrate({
   [Segments.BODY]: Joi.object().keys({
-    name: Joi.string().required().min(3).messages({
+    name: Joi.string().required().messages({
       "string.empty": "O nome não pode estar vazio",
-      "string.min": "O nome deve ter pelo menos 3 caracteres",
       "any.required": "O nome é obrigatório",
     }),
     email: Joi.string().email().required().messages({

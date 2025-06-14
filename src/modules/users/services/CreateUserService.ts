@@ -1,4 +1,4 @@
-import { usersRepository } from "../routes/UsersRepositories";
+import { usersRepository } from "../database/repositories/UsersRepositories";
 import { User } from "../database/entities/User";
 import { hash } from "bcrypt";
 import AppError from "../../../shared/errors/AppError";
@@ -34,6 +34,7 @@ export default class CreateUserService {
 
     await usersRepository.save(user);
 
-    return user;
+    const { password: _, ...userWithoutPassword } = user;
+    return userWithoutPassword as User;
   }
 }
