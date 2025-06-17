@@ -1,4 +1,4 @@
-import { usersRepository } from "../database/repositories/UsersRepositories";
+import { usersRepositories } from "../database/repositories/UsersRepositories";
 import { User } from "../database/entities/User";
 import AppError from "../../../shared/errors/AppError";
 import { compare } from "bcrypt";
@@ -19,7 +19,7 @@ export default class SessionUserService {
     email,
     password,
   }: ISessionUser): Promise<ISessionResponse> {
-    const user = await usersRepository.findByEmail(email);
+    const user = await usersRepositories.findByEmail(email);
 
     if (!user) {
       throw new AppError("Email ou senha incorretos", 401);

@@ -1,4 +1,4 @@
-import { usersRepository } from "../database/repositories/UsersRepositories";
+import { usersRepositories } from "../database/repositories/UsersRepositories";
 import { User } from "../database/entities/User";
 import { hash } from "bcrypt";
 import AppError from "../../../shared/errors/AppError";
@@ -17,7 +17,7 @@ export default class CreateUserService {
     password,
     avatar,
   }: ICreateUser): Promise<User> {
-    const emailExists = await usersRepository.findByEmail(email);
+    const emailExists = await usersRepositories.findByEmail(email);
 
     if (emailExists) {
       throw new AppError("Email já está em uso.", 409);
@@ -25,14 +25,14 @@ export default class CreateUserService {
 
     const hashedPassword = await hash(password, 10);
 
-    const user = usersRepository.create({
+    const user = usersRepositories.create({
       name,
       email,
       password: hashedPassword,
       avatar,
     });
 
-    await usersRepository.save(user);
+    await usersRepositories.save(user);
 
     const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword as User;

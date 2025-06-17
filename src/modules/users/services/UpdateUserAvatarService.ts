@@ -1,5 +1,5 @@
 import AppError from "../../../shared/errors/AppError";
-import { usersRepository } from "../database/repositories/UsersRepositories";
+import { usersRepositories } from "../database/repositories/UsersRepositories";
 import { User } from "../database/entities/User";
 import path from "path";
 import fs from "fs";
@@ -15,7 +15,7 @@ export default class UpdateUserAvatarService {
     userId,
     avatarFilename,
   }: IUpdateUserAvatar): Promise<User> {
-    const user = await usersRepository.findById(userId);
+    const user = await usersRepositories.findOneBy({ id: userId });
 
     if (!user) {
       throw new AppError("User not found", 404);
@@ -37,7 +37,7 @@ export default class UpdateUserAvatarService {
 
     user.avatar = avatarFilename;
 
-    await usersRepository.save(user);
+    await usersRepositories.save(user);
 
     return user;
   }
