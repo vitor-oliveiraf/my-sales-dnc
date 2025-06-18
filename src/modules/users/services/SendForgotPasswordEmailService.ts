@@ -17,8 +17,6 @@ export default class SendForgotPasswordEmailService {
 
     const token = await userTokensRepositories.generate(user.id);
 
-    console.log("ttttttttttttt", email);
-
     sendEmail({
       to: email,
       subject: "Recuperação de senha",

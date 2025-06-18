@@ -7,7 +7,7 @@ const profileRouter = Router();
 const profileController = new ProfileController();
 
 profileRouter.use(AuthMiddleware.execute);
-profileRouter.put("/", updateUserSchema, profileController.update);
+profileRouter.patch("/", updateUserSchema, profileController.update);
 profileRouter.get("/", profileController.show);
 
 export default profileRouter;
