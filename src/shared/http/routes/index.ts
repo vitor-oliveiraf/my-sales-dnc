@@ -7,7 +7,6 @@ import uploadConfig from "../../../config/upload";
 import passwordRouter from "../../../modules/users/routes/PasswordRoutes";
 import profileRouter from "../../../modules/users/routes/ProfileRoutes";
 import customersRouter from "../../../modules/customers/routes/CustomerRoutes";
-
 const routes = Router();
 
 routes.get("/health", (req, res) => {
