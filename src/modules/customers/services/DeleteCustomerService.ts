@@ -5,7 +5,7 @@ interface IDeleteCustomer {
   id: number;
 }
 
-export default class DeleteCurtomerService {
+export default class DeleteCustomerService {
   public async execute({ id }: IDeleteCustomer): Promise<void> {
     const customer = await customerRepositories.findById(id);
 

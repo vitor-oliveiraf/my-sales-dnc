@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import CreateCustomerService from "../services/CreateCustomerService";
 import ShowCustomerService from "../services/ShowCustomerService";
 import UpdateCustomerService from "../services/UpdateCustomerService";
-import DeleteCurtomerService from "../services/DeleteCurtomerService";
+import DeleteCustomerService from "../services/DeleteCustomerService";
 import ListCustomersService from "../services/ListCustomersService";
 
 export default class CustomersControllers {
@@ -36,7 +36,7 @@ export default class CustomersControllers {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const id = Number(request.params.id);
-    const deleteCustomer = new DeleteCurtomerService();
+    const deleteCustomer = new DeleteCustomerService();
     await deleteCustomer.execute({ id });
     return response.status(204).send();
   }

@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { Customer } from "../entities/Curtomer";
+import { Customer } from "../entities/Customer";
 import { AppDataSource } from "../../../../shared/typeorm/data-source";
 
 export const customerRepositories = AppDataSource.getRepository(
