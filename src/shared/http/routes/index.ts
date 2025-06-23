@@ -6,6 +6,7 @@ import avatarRouter from "../../../modules/users/routes/AvatarRoutes";
 import uploadConfig from "../../../config/upload";
 import passwordRouter from "../../../modules/users/routes/PasswordRoutes";
 import profileRouter from "../../../modules/users/routes/ProfileRoutes";
+import customersRouter from "../../../modules/customers/routes/CurtomerRoutes";
 
 const routes = Router();
 
@@ -19,6 +20,7 @@ routes.use("/sessions", sessionRouter);
 routes.use("/avatar", avatarRouter);
 routes.use("/passwords", passwordRouter);
 routes.use("/profiles", profileRouter);
+routes.use("/customers", customersRouter);
 routes.use("/files", express.static(uploadConfig.directory));
 
 export default routes;
