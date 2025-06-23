@@ -4,7 +4,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
+import OrdersProducts from "../../../orders/database/entities/OrdersProducts";
 
 @Entity("products")
 export class Product {
@@ -25,4 +27,7 @@ export class Product {
 
   @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
+
+  @OneToMany(() => OrdersProducts, (order_products) => order_products.product)
+  order_products: OrdersProducts[];
 }
