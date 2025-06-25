@@ -19,7 +19,7 @@ export class Product {
   @Column({ type: "decimal" })
   price: number;
 
-  @Column({ type: "int" })
+  @Column()
   quantity: number;
 
   @CreateDateColumn({ type: "timestamp" })
