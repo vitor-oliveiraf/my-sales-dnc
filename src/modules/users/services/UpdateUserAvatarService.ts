@@ -23,17 +23,12 @@ export default class UpdateUserAvatarService {
 
     if (user.avatar) {
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);
-
-      try {
-        await fs.promises.access(userAvatarFilePath);
-        await fs.promises.unlink(userAvatarFilePath);
-      } catch (error) {
-        throw new AppError(
-          "Avatar antigo não encontrado ou erro ao deletar",
-          500
-        );
-      }
+      console.log("userAvatarFilePath", userAvatarFilePath);
+      await fs.promises.access(userAvatarFilePath);
+      await fs.promises.unlink(userAvatarFilePath);
     }
+
+    console.log("avatarFilename", avatarFilename);
 
     user.avatar = avatarFilename;
 

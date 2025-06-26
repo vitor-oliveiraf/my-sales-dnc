@@ -14,8 +14,12 @@ export default class CustomersControllers {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
+    const { page, limit } = request.query;
     const listCustomers = new ListCustomersService();
-    const customers = await listCustomers.execute();
+    const customers = await listCustomers.execute(
+      Number(page || 1),
+      Number(limit || 10)
+    );
     return response.status(200).json(customers);
   }
 

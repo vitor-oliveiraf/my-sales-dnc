@@ -12,7 +12,7 @@ const customersControllers = new CustomersControllers();
 
 customersRouter.use(AuthMiddleware.execute);
 customersRouter.post("/", createCustomerSchema, customersControllers.create);
-customersRouter.get("/", customersControllers.index);
+customersRouter.get("/", customersControllers.index); 
 customersRouter.get("/:id", idParamsValidate, customersControllers.show);
 customersRouter.patch(
   "/:id",
