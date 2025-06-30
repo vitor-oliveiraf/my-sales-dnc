@@ -1,5 +1,5 @@
-import { customerRepositories } from "../database/repositories/CustomerRepositories";
-import { Customer } from "../database/entities/Customer";
+import { customerRepositories } from "../infra/database/repositories/CustomerRepositories";
+import { Customer } from "../infra/database/entities/Customer";
 import { IPagination } from "../../../shared/interface/pagination.interface";
 
 export default class ListCustomersService {

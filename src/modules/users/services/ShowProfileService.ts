@@ -1,5 +1,5 @@
 import AppError from "../../../shared/errors/AppError";
-import { usersRepositories } from "../database/repositories/UsersRepositories";
+import { usersRepositories } from "../infra/database/repositories/UsersRepositories";
 
 interface IShowProfileService {
   user_id: number;

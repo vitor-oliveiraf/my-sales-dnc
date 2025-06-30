@@ -1,5 +1,5 @@
-import { Customer } from "../database/entities/Customer";
-import { customerRepositories } from "../database/repositories/CustomerRepositories";
+import { Customer } from "../infra/database/entities/Customer";
+import { customerRepositories } from "../infra/database/repositories/CustomerRepositories";
 import AppError from "../../../shared/errors/AppError";
 
 interface IShowCustomer {
